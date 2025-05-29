@@ -1,6 +1,10 @@
-buildCommand: |
-  apt-get update && \
-  apt-get install -y ffmpeg && \
-  pip install -r requirements.txt
+services:
+  - type: worker
+    name: theplunge-agent
+    env: python
+    buildCommand: |
+      apt-get update && \
+      apt-get install -y ffmpeg && \
+      pip install -r requirements.txt
+    startCommand: python agent.py
 
-startCommand: python agent.py
