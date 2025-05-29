@@ -1,7 +1,7 @@
 import time
 from tools import trend_scraper, content_generator, voiceover_ttsmp3, video_generator, background_generator
 from tools.monetization.affiliate_scraper import get_affiliate_link, embed_affiliate_link
-from tools.monetization import find_affiliate_links
+from tools import monetization
 from publisher import twitter_poster, youtube_uploader
 
 def run_cycle():
