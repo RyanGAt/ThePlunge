@@ -16,7 +16,7 @@ def run_cycle():
     print(f"📝 Content: {content}")
 
     # Step 3: Embed affiliate link
-    content_with_link = affiliate_scraper.embed_affiliate_link(content, trend)
+    content_with_link = embed_affiliate_link(content, trend)
     print(f"🔗 With Affiliate Link:\n{content_with_link}")
 
     # Step 4: Generate voiceover MP3
