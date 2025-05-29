@@ -1,7 +1,8 @@
+
 import time
-from tools import trend_scraper, content_generator, voiceover_ttsmp3
+from tools import trend_scraper, content_generator, voiceover_ttsmp3, video_generator
 from tools.monetization import monetization, affiliate_scraper
-from publisher import twitter_poster
+from publisher import twitter_poster, youtube_uploader
 
 def run_cycle():
     print("🤖 AIPlunge content cycle started.")
@@ -16,16 +17,30 @@ def run_cycle():
 
     # Step 3: Embed affiliate link
     content_with_link = affiliate_scraper.embed_affiliate_link(content, trend)
-    print(f"🔗 With Affiliate Link:\n{content_with_link}")
+    print(f"🔗 With Affiliate Link:
+{content_with_link}")
 
     # Step 4: Generate voiceover MP3
-    voiceover_ttsmp3.ttsmp3_speak(content_with_link)
+    voiceover_path = voiceover_ttsmp3.ttsmp3_speak(content_with_link)
 
-    # Step 5: Find additional monetization (optional placeholder)
-    monetization.find_affiliate_links(trend)
+    # Step 5: Generate a video using the voiceover + background image
+    video_path = video_generator.generate_video_with_voiceover(
+        audio_file=voiceover_path,
+        image_file="assets/background.jpg",
+        output_file="output/latest/sample_short.mp4"
+    )
 
     # Step 6: Post to Twitter
     twitter_poster.post_to_twitter(content_with_link)
+
+    # Step 7: Upload to YouTube
+    if video_path:
+        youtube_uploader.upload_video(
+            file_path=video_path,
+            title=trend,
+            description=content_with_link,
+            tags=["AI", "automation", "shorts"]
+        )
 
     print("✅ Cycle complete.")
 
