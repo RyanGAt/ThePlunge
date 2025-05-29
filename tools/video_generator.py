@@ -1,6 +1,7 @@
+import moviepy.editor as mpy
 
-from moviepy.editor import AudioFileClip, ImageClip
-from pathlib import Path
+AudioFileClip = mpy.AudioFileClip
+ImageClip = mpy.ImageClip
 
 def generate_video_with_voiceover(audio_file="output/latest/voiceover.mp3", 
                                   image_file="assets/background.jpg", 
